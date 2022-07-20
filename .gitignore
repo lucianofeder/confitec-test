@@ -1,0 +1,66 @@
+# Build stuff
+*.zip
+
+# Editors / IDEs
+.vs
+.idea
+.vscode
+
+# Project stuff
+/build
+.tox
+htmlcov/
+.coverage
+.#*
+#*
+geckodriver.log
+flask_session/
+reports/
+.pytest_cache/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.mypy_cache/
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+#Arquivos de log
+*.log
+
+# Node
+node_modules
+static/dist-dev
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#DB
+*.db
+
+# Parcel
+.env
+.cache
+static/dist
+!static/src/lib
+
+# Yarn
+yarn-error.log
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
