@@ -27,7 +27,7 @@ class Dynamo:
             item (Dict[str, Any]): data to be saved
 
         Returns:
-            Dict[str, Any]: A dict containing the data found.
+            Dict[str, Any]: A dict containing the dynamo response.
         """
         response = self.client.Table(table).put_item(Item=item)
         return response
