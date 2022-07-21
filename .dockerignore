@@ -1,0 +1,8 @@
+.gitignore
+.dockerignore
+.git
+venv/
+.venv/
+.env.example
+.dockerignore
+tests/
