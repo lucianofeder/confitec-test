@@ -13,7 +13,7 @@ client = boto3.resource(
 
 class Dynamo:
     def __init__(self, client) -> None:
-        self.client = client
+        self.client: boto3.Session = client
 
     def put(
         self,
