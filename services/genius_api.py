@@ -24,6 +24,6 @@ class Genius:
         response = requests.get(
             f'{self.__base_url}/search',
             {'q': data_to_search},
-            headers=f'Bearer {self.__token}'
+            headers={'Authorization': f'Bearer {self.__token}'}
         )
         return response.json()
