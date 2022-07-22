@@ -1,3 +1,4 @@
+import json
 from functools import lru_cache
 from typing import Any
 
@@ -34,7 +35,7 @@ class Redis:
             value (Any): value to be stored
             expires (int, optional): time in seconds to expire the cache, defaults to 7 days.
         """
-        self.client.set(key, value, ex=expires, *args, **kwargs)
+        self.client.set(key, json.dumps(value), ex=expires, *args, **kwargs)
 
     def get(self, key: str) -> Any:
         """Gets the value store in cache
@@ -45,7 +46,8 @@ class Redis:
         Returns:
             Any: Returns the value stored or None if doesn't exist
         """
-        return self.client.get(key)
+        data = self.client.get(key)
+        return json.loads(data) if data else None
 
 
 @lru_cache
