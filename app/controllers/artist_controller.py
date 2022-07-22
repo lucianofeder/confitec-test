@@ -40,7 +40,6 @@ class ArtistController:
         transaction = TransactionModel(artist=artist_name, cache=use_cache)
         cached_value = self.cache.get(artist_name)
         if use_cache != 'False' and cached_value:
-            print(cached_value)
             self.db.put(transaction.__tablename__, transaction.dict())
             return ArtistRetrieveSchema(
                 artist_name=artist_name,
