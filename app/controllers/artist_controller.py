@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Any, Dict
 
 from app.models.transaction import TransactionModel
 from app.schemas.artist_schemas import ArtistRetrieveSchema
@@ -21,7 +22,14 @@ class ArtistController:
         self.api = api
         self.cache = cache
 
-    def search(self, **arguments):
+    def search(self, **arguments) -> Dict[str, Any]:
+        """Searchs an artist by name from external api, and handles it with
+        cache for better performance
+
+        Returns:
+            Dict[str, Any]: a normalized response from the api with artist
+            hits and name
+        """
         if 'name' not in arguments.keys():
             abort(
                 HTTPStatus.BAD_REQUEST,
@@ -32,6 +40,7 @@ class ArtistController:
         transaction = TransactionModel(artist=artist_name, cache=use_cache)
         cached_value = self.cache.get(artist_name)
         if use_cache != 'False' and cached_value:
+            print(cached_value)
             self.db.put(transaction.__tablename__, transaction.dict())
             return ArtistRetrieveSchema(
                 artist_name=artist_name,

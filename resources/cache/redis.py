@@ -34,7 +34,8 @@ class Redis:
         Args:
             key (str): the key to access the value
             value (Any): value to be stored
-            expires (int, optional): time in seconds to expire the cache, defaults to 7 days.
+            expires (int, optional): time in seconds to expire the cache,
+            defaults to 7 days.
         """
         try:
             self.client.set(key, json.dumps(value), ex=expires, *args, **kwargs)
