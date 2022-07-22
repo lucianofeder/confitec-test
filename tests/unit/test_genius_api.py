@@ -25,8 +25,4 @@ class TestGeniusSearch(TestCase):
     def test_search_should_return_when_data_is_found(self, mock):
         mock.return_value = MockResponse()
         response = self.api.search(self.valid_search)
-        self.assertEqual(response, {
-            "response": {
-                "hits": [{"song": "valid_song"}]
-            }
-        })
+        self.assertEqual(response, {"hits": [{"song": "valid_song"}]})

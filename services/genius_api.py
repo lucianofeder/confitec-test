@@ -26,4 +26,4 @@ class Genius:
             {'q': data_to_search},
             headers={'Authorization': f'Bearer {self.__token}'}
         )
-        return response.json()
+        return response.json().get('response', {})
