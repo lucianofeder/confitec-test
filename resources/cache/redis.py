@@ -5,6 +5,7 @@ from typing import Any
 from resources.configs import get_config
 
 from redis import Redis as RedisClient
+from redis.exceptions import ConnectionError
 
 settings = get_config()
 
@@ -35,7 +36,10 @@ class Redis:
             value (Any): value to be stored
             expires (int, optional): time in seconds to expire the cache, defaults to 7 days.
         """
-        self.client.set(key, json.dumps(value), ex=expires, *args, **kwargs)
+        try:
+            self.client.set(key, json.dumps(value), ex=expires, *args, **kwargs)
+        except ConnectionError:
+            print(f"Couldn't save {key} due to a ConnectionError")
 
     def get(self, key: str) -> Any:
         """Gets the value store in cache
@@ -46,8 +50,11 @@ class Redis:
         Returns:
             Any: Returns the value stored or None if doesn't exist
         """
-        data = self.client.get(key)
-        return json.loads(data) if data else None
+        try:
+            data = self.client.get(key)
+            return json.loads(data) if data else None
+        except ConnectionError:
+            return None
 
 
 @lru_cache
