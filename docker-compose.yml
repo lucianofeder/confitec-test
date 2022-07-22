@@ -9,6 +9,7 @@ services:
     tty: true
     volumes: 
       - ./:/app
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
     env_file: .env
 
   redis:
