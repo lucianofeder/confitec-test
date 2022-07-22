@@ -16,7 +16,7 @@ For the next steps you need:
 
 - [python3](https://www.python.org/downloads/) 
 - [redis](https://redis.io/download/)
-- A running [DynamoDB](https://aws.amazon.com/dynamodb/) server
+- A running [DynamoDB](https://aws.amazon.com/dynamodb/) server with a table like in *dynamo.yml*
 
 1. It is recommended to create a virtual enviroment first.
     ```
@@ -51,6 +51,8 @@ After the command you should see something like
 * Running on http://127.0.0.1:5000/
 ```
 
+Example request: http://127.0.0.1:5000/artist/search?name=Kendrick%20Lamar&cache=False
+
 ## Tests
 
 This application has **unit** tests and **integration** tests.
@@ -75,7 +77,7 @@ PS: The integration test still using the same Dynamo table as the application
 For the next steps you need:
 
 - [Docker](https://docs.docker.com/engine/install/) installed
-- A running [DynamoDB](https://aws.amazon.com/dynamodb/) server
+- A running [DynamoDB](https://aws.amazon.com/dynamodb/) server with a table like in *dynamo.yml*
 
 1. Running
     
@@ -84,3 +86,5 @@ For the next steps you need:
     ```
 
 2. You should be able to access the application on PORT=8000
+
+Example request: http://0.0.0.0:8000/artist/search?name=Kendrick Lamar&cache=False
